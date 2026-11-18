@@ -26,10 +26,17 @@ class Cart:
     def total_cost(self):
         return sum(item.cost for item in self.items)
 
+    def total_cost_with_discount(self, percent):
+        total = self.total_cost()
+        return total * percent / 100
+
     def print_cart(self):
         print("***********************CART***********************")
-        print("Ordered Items:")
-        for i, item in enumerate(self.items, start=1):
-            print(f"{i}. {item}")
-        print(f"Total cost: {self.total_cost():.2f} $")
+        if not self.items:
+            print("The cart is empty")
+        else:
+            print("Ordered Items:")
+            for i, item in enumerate(self.items, start=1):
+                print(f"{i}. {item}")
+            print(f"Total cost: {self.total_cost():.2f} $")
         print("***************************************************")
